@@ -5,6 +5,7 @@
 import React from 'react';
 import './Calendar.css';
 import CalendarList from './CalendarList';
+import CalendarForm from './CalendarForm';
 
 
 export default class Calendar extends React.Component {
@@ -33,7 +34,11 @@ export default class Calendar extends React.Component {
             <>
                 <section className='calendar__section'>
                     <header className='calendar__header'>Lista spotkań:</header>
-                        <CalendarList data={this.state.meetings}/>
+                    <CalendarList data={this.state.meetings}/>
+                </section>
+                <section className='form__section'>
+                    <header className='form__header'>Dodaj nowe spotkanie:</header>
+                    <CalendarForm/>
                 </section>
             </>
         )
