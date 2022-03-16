@@ -12,7 +12,7 @@ export default class CalendarForm extends React.Component {
 
     renderForm(){
         return (
-            <form className='form__container'>
+            <form className='form__container' onSubmit={this.submitHandler}>
                 <label className='form__label'>Imię: <input name='fristName' value={this.state.firstName} className='form__input' onChange={this.inputHandler} /></label>
 
                 <label className='form__label'>Nazwisko: <input name='lastName' value={this.state.lasttName} className='form__input' onChange={this.inputHandler} /></label>
@@ -30,6 +30,13 @@ export default class CalendarForm extends React.Component {
     inputHandler = e => {
         const {name,value} = e.target;
         console.log(name,value);
+        this.setState({
+            [name]:value
+        })
+    }
+
+    submitHandler = e =>{
+        e.preventDefault();
     }
 
     render(){
