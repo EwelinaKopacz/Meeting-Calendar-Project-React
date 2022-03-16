@@ -8,11 +8,10 @@ export default class CalendarList extends React.Component {
 
     showList(){
         const {data} = this.props;
-        let meetingList = [];
-        return meetingList = data.map(item => {
-            return(
-                <div className='calendar__box'>
-                    <p>Spotkanie z: <strong>{item.firstName} {item.lastName}</strong></p>
+        return data.map(item => {
+            return(                            // w dobrym miejscu mam wstawiony key={item.id} ??
+                <div className='calendar__box' key={item.id}>
+                    <p>Spotkanie z: <strong> {item.firstName} {item.lastName}</strong></p>
                     <p>Dnia: {item.date}</p>
                     <p>O godzinie: {item.time}</p>
                 </div>

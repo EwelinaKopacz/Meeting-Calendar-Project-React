@@ -8,21 +8,28 @@ import './Calendar.css';
 
 export default class CalendarForm extends React.Component {
 
+    state = {}
+
     renderForm(){
         return (
             <form className='form__container'>
-                <label className='form__label'>Imię: <input className='form__input' /></label>
+                <label className='form__label'>Imię: <input name='fristName' value={this.state.firstName} className='form__input' onChange={this.inputHandler} /></label>
 
-                <label className='form__label'>Nazwisko: <input className='form__input' /></label>
+                <label className='form__label'>Nazwisko: <input name='lastName' value={this.state.lasttName} className='form__input' onChange={this.inputHandler} /></label>
 
-                <label className='form__label'>Email: <input className='form__input' /></label>
+                <label className='form__label'>Email: <input name='email' value={this.state.email} className='form__input' onChange={this.inputHandler} /></label>
 
-                <label className='form__label'>Data: <input className='form__input' /></label>
+                <label className='form__label'>Data: <input name='date' value={this.state.date} className='form__input' onChange={this.inputHandler} /></label>
 
-                <label className='form__label'>Godzina: <input className='form__input' /></label>
+                <label className='form__label'>Godzina: <input name='hour' value={this.state.hour} className='form__input' onChange={this.inputHandler} /></label>
                 <button className='form__button'>Dodaj</button>
             </form>
         )
+    }
+
+    inputHandler = e => {
+        const {name,value} = e.target;
+        console.log(name,value);
     }
 
     render(){
