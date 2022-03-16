@@ -3,11 +3,39 @@
 // To ten komponent posiada metody, które odpytują API w celu pobrania lub ustawienia danych.
 
 import React from 'react';
+import './Calendar.css';
+import CalendarList from './CalendarList';
+
 
 export default class Calendar extends React.Component {
+    constructor(props){
+        super(props)
+        this.apiUrl = ' http://localhost:3006/meetings'
+    }
+    state = {
+        meetings:[],
+    }
+
+    async componentDidMount(){
+        try {
+            const response = await fetch(this.apiUrl);
+            const meetings = await response.json();
+            this.setState({meetings})
+            console.log(meetings);
+        }
+        catch(error){
+            console.error(error.message);
+        }
+    }
+
     render(){
         return(
-            <h1>Hello Calendar</h1>
+            <>
+                <section className='calendar__section'>
+                    <header className='calendar__header'>Lista spotkań:</header>
+                        <CalendarList data={this.state.meetings}/>
+                </section>
+            </>
         )
     }
 }

@@ -2,11 +2,29 @@
 // Pobiera dane od rodzica
 
 import React from 'react';
+import './Calendar.css';
 
 export default class CalendarList extends React.Component {
+
+    showList(){
+        const {data} = this.props;
+        let meetingList = [];
+        return meetingList = data.map(item => {
+            return(
+                <div className='calendar__box'>
+                    <p>Spotkanie z: <strong>{item.firstName} {item.lastName}</strong></p>
+                    <p>Dnia: {item.date}</p>
+                    <p>O godzinie: {item.time}</p>
+                </div>
+            )
+        })
+    }
+
     render(){
         return(
-            <h1>Hello CalendarList</h1>
+            <div className='calendar__list'>
+                {this.showList()}
+            </div>
         )
     }
 }
