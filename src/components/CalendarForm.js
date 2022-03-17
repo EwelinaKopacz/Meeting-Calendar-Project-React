@@ -8,20 +8,26 @@ import './Calendar.css';
 
 export default class CalendarForm extends React.Component {
 
-    state = {}
+    state = {
+        firstName:'',
+        lastName:'',
+        email:'',
+        date:'',
+        time:'',
+    }
 
     renderForm(){
         return (
             <form className='form__container' onSubmit={this.submitHandler}>
-                <label className='form__label'>Imię: <input name='firstName' value={this.state.firstName} className='form__input' onChange={this.inputHandler} /></label>
+                <label className='form__label'>Imię: <input name='firstName' value={this.state.firstName} className='form__input' onChange={this.inputHandler} placeholder={'Jan'}/></label>
 
-                <label className='form__label'>Nazwisko: <input name='lastName' value={this.state.lasttName} className='form__input' onChange={this.inputHandler} /></label>
+                <label className='form__label'>Nazwisko: <input name='lastName' value={this.state.lastName} className='form__input' onChange={this.inputHandler} placeholder={'Kowalski'}/></label>
 
-                <label className='form__label'>Email: <input name='email' value={this.state.email} className='form__input' onChange={this.inputHandler} /></label>
+                <label className='form__label'>Email: <input name='email' value={this.state.email} className='form__input' onChange={this.inputHandler} placeholder={'example@gmail.com'}/></label>
 
                 <label className='form__label'>Data: <input name='date' value={this.state.date} className='form__input' onChange={this.inputHandler} placeholder={'YYYY-MM-DD'}/></label>
 
-                <label className='form__label'>Godzina: <input name='time' value={this.state.hour} className='form__input' onChange={this.inputHandler} placeholder={'HH:MM'}/></label>
+                <label className='form__label'>Godzina: <input name='time' value={this.state.time} className='form__input' onChange={this.inputHandler} placeholder={'HH:MM'}/></label>
                 <button className='form__button'>Dodaj</button>
             </form>
         )
@@ -60,7 +66,6 @@ export default class CalendarForm extends React.Component {
         const regExp = /^[a-zA-Z]{2,30}/;
         if(value.match(regExp)){
             this.addToLocalState(value,targetName)
-
         }
         return false
     }
@@ -100,6 +105,17 @@ export default class CalendarForm extends React.Component {
         const {sendData,sendToAPI} = this.props
         sendData(this.state)
         sendToAPI(this.state)
+        this.clearInputs();
+    }
+
+    clearInputs(){
+        this.setState({
+            firstName:'',
+            lastName:'',
+            email:'',
+            date:'',
+            time:'',
+        })
     }
 
     render(){

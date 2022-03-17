@@ -54,12 +54,19 @@
 
 .form__button {
     margin: 4px 0px;
-    min-height: 32px;
+    min-height: 34px;
     width: auto;
-    background-color: rgb(100, 95, 95);
+    background-color: rgb(209, 93, 93);
     color: white;
     font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
     border: none;
     text-transform: uppercase;
+}
+
+.form__button:hover {
+    background-color: rgb(109, 151, 93);
+    color: white;
 }
 
