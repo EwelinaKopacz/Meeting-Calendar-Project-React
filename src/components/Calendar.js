@@ -29,6 +29,33 @@ export default class Calendar extends React.Component {
         }
     }
 
+    sendToAPI = data =>{
+        if(data){
+            const {firstName,lastName,email,date,time} = data;
+            const requestOptions = {
+                method:'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({firstName:firstName,lastName:lastName,email:email,date:date,time:time})
+            }
+
+        fetch(this.apiUrl,requestOptions)
+            .then(response => {
+                if(response.ok) {
+                    return response.json()
+                }
+                throw new Error ('Problem with connection')
+            })
+            .then(response => console.log(response))
+        }
+    }
+
+    addDataToState = data => {
+        const {meetings} = this.state;
+        this.setState({
+            meetings: [...meetings,data]
+        });
+    }
+
     render(){
         return(
             <>
@@ -38,7 +65,7 @@ export default class Calendar extends React.Component {
                 </section>
                 <section className='form__section'>
                     <header className='form__header'>Dodaj nowe spotkanie:</header>
-                    <CalendarForm/>
+                    <CalendarForm sendData={this.addDataToState} sendToAPI={this.sendToAPI}/>
                 </section>
             </>
         )

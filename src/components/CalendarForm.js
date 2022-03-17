@@ -21,7 +21,7 @@ export default class CalendarForm extends React.Component {
 
                 <label className='form__label'>Data: <input name='date' value={this.state.date} className='form__input' onChange={this.inputHandler} placeholder={'YYYY-MM-DD'}/></label>
 
-                <label className='form__label'>Godzina: <input name='hour' value={this.state.hour} className='form__input' onChange={this.inputHandler} placeholder={'HH:MM'}/></label>
+                <label className='form__label'>Godzina: <input name='time' value={this.state.hour} className='form__input' onChange={this.inputHandler} placeholder={'HH:MM'}/></label>
                 <button className='form__button'>Dodaj</button>
             </form>
         )
@@ -50,10 +50,43 @@ export default class CalendarForm extends React.Component {
             this.checkDay(date,targetName)
         }
 
-        if(targetName ==='hour'){
+        if(targetName ==='time'){
             const hour = e.target.value;
             this.checkHour(hour,targetName)
         }
+    }
+
+    checkPersonDate(value,targetName){
+        const regExp = /^[a-zA-Z]{2,30}/;
+        if(value.match(regExp)){
+            this.addToLocalState(value,targetName)
+
+        }
+        return false
+    }
+
+    checkEmail(value,targetName){
+        const regExp = /^[-\w\.]+@([-\w]+\.)+[a-z]+$/i;
+        if(value.match(regExp)){
+            this.addToLocalState(value,targetName)
+        }
+        return false
+    }
+
+    checkDay(value,targetName){
+        const regExp = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+        if(value.match(regExp)){
+            this.addToLocalState(value,targetName)
+        }
+        return false
+    }
+
+    checkHour(value,targetName){
+        const regExp = /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/;
+        if(value.match(regExp)){
+            this.addToLocalState(value,targetName)
+        }
+        return false
     }
 
     addToLocalState(value,targetName){
@@ -62,47 +95,11 @@ export default class CalendarForm extends React.Component {
         });
     }
 
-    checkPersonDate(value,targetName){
-        const regExp = /^[a-zA-Z]{2,30}/;
-        if(value.match(regExp)){
-            console.log('imie lub nazwisko poprawne');
-            this.addToLocalState(value,targetName)
-        }
-        return false
-    }
-
-    checkEmail(value,targetName){
-        const regExp = /^[-\w\.]+@([-\w]+\.)+[a-z]+$/i;
-        if(value.match(regExp)){
-            console.log('email poprawny');
-            this.addToLocalState(value,targetName)
-        }
-        console.log('email zly');
-        return false
-    }
-
-    checkDay(value,targetName){
-        const regExp = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
-        if(value.match(regExp)){
-            console.log('data poprawna');
-            this.addToLocalState(value,targetName)
-        }
-        console.log('data zla');
-        return false
-    }
-
-    checkHour(value,targetName){
-        const regExp = /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/;
-        if(value.match(regExp)){
-            console.log('godzina poprawna');
-            this.addToLocalState(value,targetName)
-        }
-        console.log('godzina zla');
-        return false
-    }
-
     submitHandler = e =>{
-        e.preventDefault();
+        e.preventDefault()
+        const {sendData,sendToAPI} = this.props
+        sendData(this.state)
+        sendToAPI(this.state)
     }
 
     render(){
