@@ -6,116 +6,140 @@
 import React from 'react';
 import './Calendar.css';
 
-export default class CalendarForm extends React.Component {
-
-    state = {
-        firstName:'',
+const initialState = {
+    firstName:'',
         lastName:'',
         email:'',
         date:'',
         time:'',
-    }
+        firstNameError:'',
+        lastNameError:'',
+        emailError:'',
+        dateError:'',
+        timeError:'',
+}
+
+export default class CalendarForm extends React.Component {
+
+    state = initialState;
 
     renderForm(){
+        console.log(this.state);
         return (
             <form className='form__container' onSubmit={this.submitHandler}>
-                <label className='form__label'>Imię: <input name='firstName' value={this.state.firstName} className='form__input' onChange={this.inputHandler} placeholder={'Jan'}/></label>
+                <label className='form__label'>Imię: </label><input name='firstName' value={this.state.firstName} className='form__input' onChange={this.inputHandler} placeholder={'Jan'}/><span className='form__errors'>{this.state.firstNameError}</span>
 
-                <label className='form__label'>Nazwisko: <input name='lastName' value={this.state.lastName} className='form__input' onChange={this.inputHandler} placeholder={'Kowalski'}/></label>
+                <label className='form__label'>Nazwisko: </label><input name='lastName' value={this.state.lastName} className='form__input' onChange={this.inputHandler} placeholder={'Kowalski'}/><span className='form__errors'>{this.state.lastNameError}</span>
 
-                <label className='form__label'>Email: <input name='email' value={this.state.email} className='form__input' onChange={this.inputHandler} placeholder={'example@gmail.com'}/></label>
+                <label className='form__label'>Email: </label><input name='email' value={this.state.email} className='form__input' onChange={this.inputHandler} placeholder={'example@gmail.com'}/><span className='form__errors'>{this.state.emailError}</span>
 
-                <label className='form__label'>Data: <input name='date' value={this.state.date} className='form__input' onChange={this.inputHandler} placeholder={'YYYY-MM-DD'}/></label>
+                <label className='form__label'>Data: </label><input name='date' value={this.state.date} className='form__input' onChange={this.inputHandler} placeholder={'YYYY-MM-DD'}/><span className='form__errors'>{this.state.dateError}</span>
 
-                <label className='form__label'>Godzina: <input name='time' value={this.state.time} className='form__input' onChange={this.inputHandler} placeholder={'HH:MM'}/></label>
+                <label className='form__label'>Godzina: </label><input name='time' value={this.state.time} className='form__input' onChange={this.inputHandler} placeholder={'HH:MM'}/><span className='form__errors'>{this.state.timeError}</span>
                 <button className='form__button'>Dodaj</button>
             </form>
         )
     }
 
     inputHandler = e => {
-        const targetName = e.target.name;
-
-        if(targetName ==='firstName'){
-            const firstName = e.target.value
-            this.checkPersonDate(firstName,targetName)
-        }
-
-        if(targetName ==='lastName'){
-            const lastName = e.target.value;
-            this.checkPersonDate(lastName,targetName)
-        }
-
-        if(targetName ==='email'){
-            const email = e.target.value;
-            this.checkEmail(email,targetName)
-        }
-
-        if(targetName ==='date'){
-            const date = e.target.value;
-            this.checkDay(date,targetName)
-        }
-
-        if(targetName ==='time'){
-            const hour = e.target.value;
-            this.checkHour(hour,targetName)
-        }
-    }
-
-    checkPersonDate(value,targetName){
-        const regExp = /^[a-zA-Z]{2,30}/;
-        if(value.match(regExp)){
-            this.addToLocalState(value,targetName)
-        }
-        return false
-    }
-
-    checkEmail(value,targetName){
-        const regExp = /^[-\w\.]+@([-\w]+\.)+[a-z]+$/i;
-        if(value.match(regExp)){
-            this.addToLocalState(value,targetName)
-        }
-        return false
-    }
-
-    checkDay(value,targetName){
-        const regExp = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
-        if(value.match(regExp)){
-            this.addToLocalState(value,targetName)
-        }
-        return false
-    }
-
-    checkHour(value,targetName){
-        const regExp = /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/;
-        if(value.match(regExp)){
-            this.addToLocalState(value,targetName)
-        }
-        return false
-    }
-
-    addToLocalState(value,targetName){
+        const targetName = e.target.name
+        const targetValue = e.target.value
         this.setState({
-            [targetName]:value
+            [targetName]:targetValue
         });
     }
 
-    submitHandler = e =>{
+    submitHandler = e => {
         e.preventDefault()
-        const {sendData,sendToAPI} = this.props
-        sendData(this.state)
-        sendToAPI(this.state)
-        this.clearInputs();
+        const isValid = this.checkValid()
+        if(isValid){
+            const {sendData,sendToAPI} = this.props
+            sendData(this.state)
+            sendToAPI(this.state)
+            this.cleanInputs();
+        }
     }
 
-    clearInputs(){
-        this.setState({
-            firstName:'',
-            lastName:'',
-            email:'',
-            date:'',
-            time:'',
-        })
+    checkValid = () =>{
+        let firstNameError = '';
+        let lastNameError = '';
+        let emailError = '';
+        let dateError = '';
+        let timeError = '';
+
+        if(!this.checkFirstName()){
+            firstNameError = 'Imię musi składać się min. z 2 znaków'
+        }
+        if(!this.checkLastName()){
+            lastNameError = 'Nazwisko musi składać się min. z 2 znaków'
+        }
+
+        if(!this.checkEmail() || !this.state.email){
+            emailError = 'Podaj poprawny adres E-mail'
+        }
+
+        if(!this.checkDay() || !this.state.date){
+            dateError = 'Podaj poprawną datę RRRR-MM-DD'
+        }
+
+        if(!this.checkHour() || !this.state.date){
+            timeError = 'Podaj poprawną godzinę HH:MM'
+        }
+
+        if(firstNameError || lastNameError || emailError || dateError || timeError){
+            this.setState({firstNameError,lastNameError,emailError,dateError,timeError})
+            return false
+        }
+        return true
+    }
+
+    checkFirstName = () => {
+        const{firstName} = this.state;
+        const regExp = /^[a-zA-Z]{2,30}/;
+        if(firstName.match(regExp)) {
+            return true
+        }
+        return false
+    }
+
+    checkLastName = () => {
+        const{lastName} = this.state;
+        const regExp = /^[a-zA-Z]{2,30}/;
+        if(lastName.match(regExp)) {
+            return true
+        }
+        return false
+    }
+
+    checkEmail = () => {
+        const{email} = this.state;
+        const regExp = /^[-\w\.]+@([-\w]+\.)+[a-z]+$/i;
+        if(email.match(regExp)){
+            return true
+        }
+        return false
+    }
+
+    checkDay = () => {
+        const{date} = this.state;
+        const regExp = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+        if(date.match(regExp)){
+            return true
+        }
+        return false
+    }
+
+    checkHour = () =>{
+        const{time} = this.state;
+        const regExp = /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/;
+        if(time.match(regExp)){
+            return true
+        }
+        return false
+    }
+
+    cleanInputs = () => {
+        this.setState(initialState)
     }
 
     render(){
