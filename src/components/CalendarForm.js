@@ -25,9 +25,10 @@ export default class CalendarForm extends React.Component {
 
     renderForm(){
         console.log(this.state);
+        const {header} = this.props;
         return (
             <section className='form__section'>
-                <h1 className='form__header'>Dodaj nowe spotkanie:</h1>
+                <h1 className='form__header'>{header}</h1>
                 <form className='form__container' onSubmit={this.submitHandler}>
                     <label className='form__label'>Imię: </label><input name='firstName' value={this.state.firstName} className='form__input' onChange={this.inputHandler} placeholder={'Jan'}/><span className='form__errors'>{this.state.firstNameError}</span>
 

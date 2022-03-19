@@ -1,10 +1,7 @@
-// CEL KOMPONENTU
-// Renderuje pozostałe komponenty oraz zawiera w state listę spotkań do wyświetlenia.
-// To ten komponent posiada metody, które odpytują API w celu pobrania lub ustawienia danych.
-
 import React from 'react';
 import './Calendar.css';
 import CalendarList from './CalendarList';
+import CalendarItem from './CalendarItem';
 import CalendarForm from './CalendarForm';
 
 
@@ -56,12 +53,23 @@ export default class Calendar extends React.Component {
         });
     }
 
+    renderMeetingList = () =>{
+        const {meetings} = this.state;
+        return (
+            meetings.map(item => {
+                return <CalendarItem meeting={item} key={item.id}/>
+            })
+        )
+    }
+
     render(){
         return(
             <>
                 <section className='calendar__section'>
-                    <CalendarList data={this.state.meetings}/> 
-                    <CalendarForm sendData={this.addDataToState} sendToAPI={this.sendToAPI}/>
+                    <CalendarList header={'Lista spotkań:'}>
+                        {this.renderMeetingList()}
+                    </CalendarList>
+                    <CalendarForm header={'Dodaj nowe spotkanie:'} sendData={this.addDataToState} sendToAPI={this.sendToAPI} />
                 </section>
             </>
         )
