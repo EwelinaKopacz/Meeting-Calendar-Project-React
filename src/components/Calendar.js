@@ -7,7 +7,6 @@ import CalendarProvider from './CalendarProvider';
 
 const apiCalendar = new CalendarProvider();
 
-
 export default class Calendar extends React.Component {
     state = {
         meetings:[],
