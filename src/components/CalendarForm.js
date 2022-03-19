@@ -26,18 +26,21 @@ export default class CalendarForm extends React.Component {
     renderForm(){
         console.log(this.state);
         return (
-            <form className='form__container' onSubmit={this.submitHandler}>
-                <label className='form__label'>Imię: </label><input name='firstName' value={this.state.firstName} className='form__input' onChange={this.inputHandler} placeholder={'Jan'}/><span className='form__errors'>{this.state.firstNameError}</span>
+            <section className='form__section'>
+                <h1 className='form__header'>Dodaj nowe spotkanie:</h1>
+                <form className='form__container' onSubmit={this.submitHandler}>
+                    <label className='form__label'>Imię: </label><input name='firstName' value={this.state.firstName} className='form__input' onChange={this.inputHandler} placeholder={'Jan'}/><span className='form__errors'>{this.state.firstNameError}</span>
 
-                <label className='form__label'>Nazwisko: </label><input name='lastName' value={this.state.lastName} className='form__input' onChange={this.inputHandler} placeholder={'Kowalski'}/><span className='form__errors'>{this.state.lastNameError}</span>
+                    <label className='form__label'>Nazwisko: </label><input name='lastName' value={this.state.lastName} className='form__input' onChange={this.inputHandler} placeholder={'Kowalski'}/><span className='form__errors'>{this.state.lastNameError}</span>
 
-                <label className='form__label'>Email: </label><input name='email' value={this.state.email} className='form__input' onChange={this.inputHandler} placeholder={'example@gmail.com'}/><span className='form__errors'>{this.state.emailError}</span>
+                    <label className='form__label'>Email: </label><input name='email' value={this.state.email} className='form__input' onChange={this.inputHandler} placeholder={'example@gmail.com'}/><span className='form__errors'>{this.state.emailError}</span>
 
-                <label className='form__label'>Data: </label><input name='date' value={this.state.date} className='form__input' onChange={this.inputHandler} placeholder={'YYYY-MM-DD'}/><span className='form__errors'>{this.state.dateError}</span>
+                    <label className='form__label'>Data: </label><input name='date' value={this.state.date} className='form__input' onChange={this.inputHandler} placeholder={'YYYY-MM-DD'}/><span className='form__errors'>{this.state.dateError}</span>
 
-                <label className='form__label'>Godzina: </label><input name='time' value={this.state.time} className='form__input' onChange={this.inputHandler} placeholder={'HH:MM'}/><span className='form__errors'>{this.state.timeError}</span>
-                <button className='form__button'>Dodaj</button>
-            </form>
+                    <label className='form__label'>Godzina: </label><input name='time' value={this.state.time} className='form__input' onChange={this.inputHandler} placeholder={'HH:MM'}/><span className='form__errors'>{this.state.timeError}</span>
+                    <button className='form__button'>Dodaj</button>
+                </form>
+            </section>
         )
     }
 

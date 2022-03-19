@@ -57,20 +57,45 @@ export default class Calendar extends React.Component {
     }
 
     render(){
+        // return(
+        //     <>
+        //         <section className='calendar__section'>
+        //             <header className='calendar__header'>Lista spotkań:</header>
+        //             <CalendarList data={this.state.meetings}/> 
+        //         </section>
+        //         <section className='form__section'>
+        //             <header className='form__header'>Dodaj nowe spotkanie:</header>
+        //             <CalendarForm sendData={this.addDataToState} sendToAPI={this.sendToAPI}/>
+        //         </section>
+        //     </>
+        // )
+
         return(
             <>
                 <section className='calendar__section'>
-                    <header className='calendar__header'>Lista spotkań:</header>
-                    <CalendarList data={this.state.meetings}/>
-                </section>
-                <section className='form__section'>
-                    <header className='form__header'>Dodaj nowe spotkanie:</header>
+                    <CalendarList data={this.state.meetings}/> 
                     <CalendarForm sendData={this.addDataToState} sendToAPI={this.sendToAPI}/>
                 </section>
             </>
         )
     }
 }
+
+
+// render(){
+//     return(
+//         <>
+//             <section className='calendar__section'>
+//                 <header className='calendar__header'>Lista spotkań:</header>
+//                 <CalendarList data={this.state.meetings}/> 
+//             </section>
+//             <section className='form__section'>
+//                 <header className='form__header'>Dodaj nowe spotkanie:</header>
+//                 <CalendarForm sendData={this.addDataToState} sendToAPI={this.sendToAPI}/>
+//             </section>
+//         </>
+//     )
+// }
 
 
 

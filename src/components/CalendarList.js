@@ -10,7 +10,7 @@ export default class CalendarList extends React.Component {
         const {data} = this.props;
         return data.map(item => {
             return(                            // w dobrym miejscu mam wstawiony key={item.id} ??
-                <div className='calendar__box' key={item.id}>
+                <div className='meeting__box' key={item.id}>
                     <p>Spotkanie z: <strong> {item.firstName} {item.lastName}</strong></p>
                     <p>Dnia: {item.date}</p>
                     <p>O godzinie: {item.time}</p>
@@ -21,9 +21,12 @@ export default class CalendarList extends React.Component {
 
     render(){
         return(
-            <div className='calendar__list'>
-                {this.showList()}
-            </div>
+            <section className='meeting__section'>
+                <h1 className='meeting__header'>Lista spotkań:</h1>
+                    <div className='meeting__list'>
+                        {this.showList()}
+                    </div>
+            </section>
         )
     }
 }

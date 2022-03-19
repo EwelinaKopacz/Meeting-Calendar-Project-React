@@ -1,13 +1,17 @@
 /* Callendar style  */
 
-.calendar__section, .form__section {
+.calendar__section {
+    display: block;
+}
+
+.meeting__section, .form__section {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 50px 0px;
+    margin: 25px 0px;
 }
 
-.calendar__header, .form__header {
+.meeting__header, .form__header {
    font-size: 30px;
    font-weight: 600;
    border-bottom: 1px solid grey;
@@ -16,14 +20,14 @@
 
 /* CallendarList style */
 
-.calendar__list{
+.meeting__list{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-.calendar__box{
+.meeting__box{
     margin: 10px;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
@@ -39,10 +43,8 @@
 }
 
 .form__label{
-    margin: 5px 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 2px 0px;
+    text-align: left;
 }
 
 .form__input {
