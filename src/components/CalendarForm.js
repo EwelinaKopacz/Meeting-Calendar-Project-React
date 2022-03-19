@@ -60,7 +60,9 @@ export default class CalendarForm extends React.Component {
             sendData(this.state)
             sendToAPI(this.state)
             this.cleanInputs();
+            return alert('Spotkanie zostało dodane!')
         }
+        return false
     }
 
     checkValid = () =>{
