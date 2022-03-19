@@ -3,46 +3,27 @@ import './Calendar.css';
 import CalendarList from './CalendarList';
 import CalendarItem from './CalendarItem';
 import CalendarForm from './CalendarForm';
+import CalendarProvider from './CalendarProvider';
+
+const apiCalendar = new CalendarProvider();
 
 
 export default class Calendar extends React.Component {
-    constructor(props){
-        super(props)
-        this.apiUrl = ' http://localhost:3006/meetings'
-    }
     state = {
         meetings:[],
     }
 
-    async componentDidMount(){
-        try {
-            const response = await fetch(this.apiUrl);
-            const meetings = await response.json();
-            this.setState({meetings})
-            console.log(meetings);
-        }
-        catch(error){
-            console.error(error.message);
-        }
+    componentDidMount(){
+        apiCalendar.loadData()
+            .then(data => this.setState({meetings:data}))
+            .catch(error => console.error(error))
     }
 
-    sendToAPI = data =>{
+    sendDataToAPI = data =>{
         if(data){
             const {firstName,lastName,email,date,time} = data;
-            const requestOptions = {
-                method:'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({firstName:firstName,lastName:lastName,email:email,date:date,time:time})
-            }
-
-        fetch(this.apiUrl,requestOptions)
-            .then(response => {
-                if(response.ok) {
-                    return response.json()
-                }
-                throw new Error ('Problem with connection')
-            })
-            .then(response => console.log(response))
+            const dataToSend = {firstName:firstName,lastName:lastName,email:email,date:date,time:time};
+            apiCalendar.addData(dataToSend)
         }
     }
 
@@ -69,7 +50,7 @@ export default class Calendar extends React.Component {
                     <CalendarList header={'Lista spotkań:'}>
                         {this.renderMeetingList()}
                     </CalendarList>
-                    <CalendarForm header={'Dodaj nowe spotkanie:'} sendData={this.addDataToState} sendToAPI={this.sendToAPI} />
+                    <CalendarForm header={'Dodaj nowe spotkanie:'} sendDataToState={this.addDataToState} sendDataToAPI={this.sendToAPI} />
                 </section>
             </>
         )

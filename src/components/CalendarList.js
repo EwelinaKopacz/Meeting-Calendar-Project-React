@@ -2,7 +2,6 @@ import React from 'react';
 import './Calendar.css';
 
 export default class CalendarList extends React.Component {
-  
     render(){
         const {children,header}=this.props;
         return(
@@ -15,3 +14,5 @@ export default class CalendarList extends React.Component {
         )
     }
 }
+
+

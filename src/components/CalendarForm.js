@@ -1,8 +1,3 @@
-// Renderuje formularz.
-// Elementy formularza są kontrolowane przez state, więc komponent ten możemy nazwać kontrolowanym.
-// Przed wysłaniem formularza, powinniśmy zweryfikować poprawność wprowadzonych danych (wykonać walidację)
-// Wysyła dane do rodzica - w rodzicu tworzymy metody, ktore przekazemy przez props
-
 import React from 'react';
 import './Calendar.css';
 
@@ -57,9 +52,9 @@ export default class CalendarForm extends React.Component {
         e.preventDefault()
         const isValid = this.checkValid()
         if(isValid){
-            const {sendData,sendToAPI} = this.props
-            sendData(this.state)
-            sendToAPI(this.state)
+            const {sendDataToState,sendDataToAPI} = this.props
+            sendDataToState(this.state)
+            sendDataToAPI(this.state)
             this.cleanInputs();
             return alert('Spotkanie zostało dodane!')
         }
