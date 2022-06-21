@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Tasks Manager Project - React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About the project:
+The aim of the project was to create application "Meeting Calendar" using React library. While working on this project I have tried to split the code into components - it was required. To create my application I used "Create React App"  ready templated.
 
-## Available Scripts
+Features:
+* user can add a new meeting by form giving:
+    * first name
+    * last name
+    * email
+    * meeting day
+    * meeting hour
 
-In the project directory, you can run:
+Each field is reguired and data is check when user click the button "Dodaj". If the data is invalid, user will see the error.
 
-### `npm start`
+* correct data is saving into .json file. I am using local API - JSON server
+* a new meeting is added to the list
+* after start project and JSON server, data (meeting list) is loaded 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to see it
+Please, refer to the screenshots, which are attached below. Moreover, I am working on a form of a video preview as an additional reference guide.
 
-### `npm test`
+## Technologies:
+* JavaScript
+* React
+* HTML
+* CSS
+* JSON Server
+* Desktop only version
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Solutions
+When creating this project I had an opportunity to practice/learn:
+* how to build application using composition and components - nested components.
+* dependence between parent and children component - communication
+* React Developer Tool
 
-### `npm run build`
+I have created one "big" compontent ```<Calendar/>``` which includes:
+* state: meetings array
+* functions
+* components such as:
+    * ```<CalendarForm/>```
+    * ```<CalendarList/>``` include another component: ```<CalendarItem/>``` 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I have used props to transfer functions and data to the "children" components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* I created another one ```<CalendarProvider/>``` component, to connect with API: load and add meetings
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Development
+I am going to develop application by adding additional functionalities such as:
+* remove a meeting
+* edit a meeting
+* sort meetings
+* component to confirm added a meeting
+* better design
 
-### `npm run eject`
+Right now, I can provide my other projects where I focused more on design and practiced CSS3.
+* [LandingPage-HTML-CSS](https://github.com/EwelinaKopacz/LandingPage-HTML-CSS)
+* [LandingPage-RWD](https://github.com/EwelinaKopacz/LandingPage-RWD)
+* [LandingPage-CuDanusie](https://github.com/EwelinaKopacz/LandingPage-CuDanusie)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Project preview
+List of meetings
+![Project-preview](./preview/preview1.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Form with errors
+![Project-preview](./preview/preview2.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Feel free to contact me:
+* [Linkedin](https://www.linkedin.com/in/ewelina-kopacz-929559100/) - Ewelina Kopacz
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Thanks for project and support to Mateusz Bogolubow:
+* Mentor i Trener Programowania JavaScript - [DevMentor](https://devmentor.pl/) - Mateusz Bogolubow

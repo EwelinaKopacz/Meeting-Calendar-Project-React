@@ -49,7 +49,7 @@ export default class Calendar extends React.Component {
                     <CalendarList header={'Lista spotkań:'}>
                         {this.renderMeetingList()}
                     </CalendarList>
-                    <CalendarForm header={'Dodaj nowe spotkanie:'} sendDataToState={this.addDataToState} sendDataToAPI={this.sendToAPI} />
+                    <CalendarForm header={'Dodaj nowe spotkanie:'} sendDataToState={this.addDataToState} sendDataToAPI={this.sendDataToAPI} />
                 </section>
             </>
         )

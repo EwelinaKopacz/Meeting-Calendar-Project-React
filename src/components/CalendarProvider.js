@@ -1,7 +1,7 @@
 
 export default class CalendarProvider {
     constructor (){
-        this.apiUrl = 'http://localhost:3006/meetings'
+        this.apiUrl = 'http://localhost:3005/meetings'
     }
 
     loadData(){

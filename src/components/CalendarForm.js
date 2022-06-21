@@ -19,7 +19,6 @@ export default class CalendarForm extends React.Component {
     state = initialState;
 
     renderForm(){
-        console.log(this.state);
         const {header} = this.props;
         return (
             <section className='form__section'>
@@ -31,7 +30,7 @@ export default class CalendarForm extends React.Component {
 
                     <label className='form__label'>Email: </label><input name='email' value={this.state.email} className='form__input' onChange={this.inputHandler} placeholder={'example@gmail.com'}/><span className='form__errors'>{this.state.emailError}</span>
 
-                    <label className='form__label'>Data: </label><input name='date' value={this.state.date} className='form__input' onChange={this.inputHandler} placeholder={'YYYY-MM-DD'}/><span className='form__errors'>{this.state.dateError}</span>
+                    <label className='form__label'>Data: </label><input name='date' value={this.state.date} className='form__input' onChange={this.inputHandler} placeholder={'RRRR-MM-DD'}/><span className='form__errors'>{this.state.dateError}</span>
 
                     <label className='form__label'>Godzina: </label><input name='time' value={this.state.time} className='form__input' onChange={this.inputHandler} placeholder={'HH:MM'}/><span className='form__errors'>{this.state.timeError}</span>
                     <button className='form__button'>Dodaj</button>
@@ -53,7 +52,7 @@ export default class CalendarForm extends React.Component {
         const isValid = this.checkValid()
         if(isValid){
             const {sendDataToState,sendDataToAPI} = this.props
-            sendDataToState(this.state)
+            sendDataToState({...this.state})
             sendDataToAPI(this.state)
             this.cleanInputs();
             return alert('Spotkanie zostało dodane!')
@@ -94,22 +93,22 @@ export default class CalendarForm extends React.Component {
         return true
     }
 
-    checkFirstName = () => {
-        const{firstName} = this.state;
+    checkName = (name) => {
         const regExp = /^[a-zA-Z]{2,30}/;
-        if(firstName.match(regExp)) {
+        if(name.match(regExp)) {
             return true
         }
         return false
     }
 
+    checkFirstName = () => {
+        const{firstName} = this.state;
+        return this.checkName(firstName);
+    }
+
     checkLastName = () => {
-        const{lastName} = this.state;
-        const regExp = /^[a-zA-Z]{2,30}/;
-        if(lastName.match(regExp)) {
-            return true
-        }
-        return false
+        const{firstName} = this.state;
+        return this.checkName(firstName);
     }
 
     checkEmail = () => {
