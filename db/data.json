@@ -31,30 +31,6 @@
       "date": "1990-12-12",
       "time": "12:45",
       "id": 4
-    },
-    {
-      "firstName": "Adrian",
-      "lastName": "Szopa",
-      "email": "elektryk@adrianszopa.pl",
-      "date": "1990-12-12",
-      "time": "15:20",
-      "id": 5
-    },
-    {
-      "firstName": "Ewelina",
-      "lastName": "Kopacz",
-      "email": "ewelina@ekopacz.pl",
-      "date": "1990-12-12",
-      "time": "12:45",
-      "id": 6
-    },
-    {
-      "firstName": "Ewelina",
-      "lastName": "Kopacz",
-      "email": "ewelina@ekopacz.pl",
-      "date": "1990-12-12",
-      "time": "12:45",
-      "id": 7
     }
   ]
 }
