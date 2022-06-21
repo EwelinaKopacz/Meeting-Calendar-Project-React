@@ -1,4 +1,4 @@
-# Tasks Manager Project - React
+# Meeting Calendar Project - React
 
 ## About the project:
 The aim of the project was to create application "Meeting Calendar" using React library. While working on this project I have tried to split the code into components - it was required. To create my application I used "Create React App"  ready templated.
