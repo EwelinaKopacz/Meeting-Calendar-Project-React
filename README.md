@@ -1,6 +1,16 @@
 # Meeting Calendar Project - React
 
-## About the project:
+## Table of Contents
+1. [About the project](#about-the-project)
+2. [How to see it](#how-to-see-it)
+3. [Technologies](#technologies)
+4. [Solutions](#solutions)
+5. [Development](#development)
+6. [Project preview](#project-preview)
+7. [Contact](#feel-free-to-contact-me)
+8. [Thanks](#thanks-for-project-and-support-to-Mateusz-Bogolubow)
+
+## About the project
 The aim of the project was to create application "Meeting Calendar" using React library. While working on this project I have tried to split the code into components - it was required. To create my application I used "Create React App"  ready templated.
 
 Features:
